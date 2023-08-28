@@ -1,0 +1,15 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: max-content auto;
+}
+.grid-item {
+    padding: 10px;
+    margin: 10px;
+}
+
+#counterList {
+    background-color: rgba(220, 220, 220, 0.600);
+}
+ul {
+    list-style-type: none;
+}

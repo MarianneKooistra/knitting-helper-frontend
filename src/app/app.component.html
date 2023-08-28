@@ -3,43 +3,35 @@
 </div>
 
 <div>
-  <div>
+  <header>
     <h2>Counter</h2>
     <p>Click the button every time you have finished a section of the project.</p>
-    <div>
+  </header>
+
+  <div class="grid-container">
+    <div class="grid-item" id="counterList">
+      <ng-container *ngIf="(listOfCounters$ | async) as listOfCounters">
+        <ul *ngFor="let knittingCounter of listOfCounters">
+          <li>
+            <a href="#">{{ knittingCounter.counterName }}</a>: {{ knittingCounter.counterNumber }} / {{ knittingCounter.counterTotal }}
+          </li>
+        </ul>
+      </ng-container>
+    </div>
+  
+    <div class="grid-item">
       <table>
         <tr>
           <td>Row</td>
           <td>Stitch</td>
         </tr>
       </table>
+      <br>
+      <div>
+        <button>this place is where the button goes.</button>
+        <p><span>The amount of times the button has been pressed.</span>  of  <span>This needs to be changed into a input field for the desired amount of rows.</span></p>
+      </div>
     </div>
-  </div>
-  <br>
-  <div>
-    <button>this place is where the button goes.</button>
-    <p><span>The amount of times the button has been pressed.</span>  of  <span>This needs to be changed into a input field for the desired amount of rows.</span></p>
-  </div>
-
-  <div>
-    <h1>{{ title }}</h1>
-    <ng-container *ngIf="(listOfCounters$ | async) as listOfCounters">
-      <table>
-        <thead>
-          <tr>
-            <th>don't know just testing</th>
-          </tr>
-        </thead>
-        <tbody *ngFor="let knittingCounter of listOfCounters">
-          <tr>
-            <td>{{ knittingCounter.counterId }}</td>
-            <td>{{ knittingCounter.counterName }}</td>
-            <td>{{ knittingCounter.counterNumber }}</td>
-            <td>{{ knittingCounter.counterTotal }}</td>
-          </tr>
-        </tbody>
-      </table>
-  </ng-container>
   </div>
 
 </div>
