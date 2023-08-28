@@ -8,30 +8,35 @@
     <p>Click the button every time you have finished a section of the project.</p>
   </header>
 
-  <div class="grid-container">
-    <div class="grid-item" id="counterList">
-      <ng-container *ngIf="(listOfCounters$ | async) as listOfCounters">
-        <ul *ngFor="let knittingCounter of listOfCounters">
+  <ng-container *ngIf="(listOfCounters$ | async) as listOfCounters">
+    <div class="grid-container">
+      <div class="grid-item" id="counterList">
+        <ul *ngFor="let counter of listOfCounters">
           <li>
-            <a href="#">{{ knittingCounter.counterName }}</a>: {{ knittingCounter.counterNumber }} / {{ knittingCounter.counterTotal }}
+            <a (click)="getCounterById(counter)" type="button">{{ counter.counterName }}: {{ counter.counterNumber }} / {{ counter.counterTotal }}</a>
           </li>
         </ul>
-      </ng-container>
-    </div>
-  
-    <div class="grid-item">
-      <table>
-        <tr>
-          <td>Row</td>
-          <td>Stitch</td>
-        </tr>
-      </table>
-      <br>
-      <div>
-        <button>this place is where the button goes.</button>
-        <p><span>The amount of times the button has been pressed.</span>  of  <span>This needs to be changed into a input field for the desired amount of rows.</span></p>
+      </div>
+    
+      <div class="grid-item">
+        <table>
+          <tr>
+            <td>Row</td>
+            <td>Stitch</td>
+          </tr>
+        </table>
+        <button class="btn btn-success">this place is where the button goes.</button>
+      </div>
+
+      <div class="grid-item">
+        <ng-container *ngIf="(currentCounter$ | async) as current">
+          <div>
+            <h3>{{ current.counterName }}</h3>
+            <p>{{ current.counterNumber }} of {{ current.counterTotal }}</p>
+          </div>
+        </ng-container>
       </div>
     </div>
-  </div>
+  </ng-container>
 
 </div>

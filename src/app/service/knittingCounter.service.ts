@@ -15,8 +15,13 @@ export class KnittingCounterService {
 
     constructor(private http: HttpClient) {}
 
-    counters$ = <Observable<KnittingCounter[]>> this.http.get(`${this.apiUrl}`+'/counter/')
+    counters$ = <Observable<KnittingCounter[]>> this.http.get(`${this.apiUrl}/counter/`)
         .pipe(
             tap(console.log)
-        );
+    );
+
+    counterById$ = (counterId: number) => <Observable<KnittingCounter>> this.http.get(`${this.apiUrl}/counter/get/${counterId}`)
+        .pipe(
+            tap(console.log)
+    );
 }
