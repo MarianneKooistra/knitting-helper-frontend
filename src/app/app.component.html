@@ -21,24 +21,24 @@
         </div>
       </div>
     
-      <div class="grid-item">
-        <table>
-          <tr>
-            <td>Row</td>
-            <td>Stitch</td>
-          </tr>
-        </table>
-        <button class="btn btn-success">this place is where the button goes.</button>
-      </div>
+      <ng-container *ngIf="(currentCounter$ | async) as current">
+        <div class="grid-item">
+          <table>
+            <tr>
+              <td>Row</td>
+              <td>Stitch</td>
+            </tr>
+          </table>
+          <a (click)="countOne(current)" type="button" class="btn btn-danger">test button to increase</a>
+        </div>
 
-      <div class="grid-item">
-        <ng-container *ngIf="(currentCounter$ | async) as current">
+        <div class="grid-item">
           <div>
             <h3>{{ current.counterName }}</h3>
             <p>{{ current.counterNumber }} of {{ current.counterTotal }}</p>
           </div>
-        </ng-container>
-      </div>
+        </div>
+      </ng-container>
     </div>
   </ng-container>
 

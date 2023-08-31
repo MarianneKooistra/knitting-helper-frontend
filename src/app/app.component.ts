@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { KnittingCounterService } from './service/knittingCounter.service';
 import { KnittingCounter } from './interface/knittingCounter';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, count } from 'rxjs';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
   listOfCounters$: Observable<any[]> = this.knittingCounterArraySubject.asObservable();
   private knittingCounterSubject = new BehaviorSubject<KnittingCounter> (this.newCounter);
   currentCounter$: Observable<KnittingCounter> = this.knittingCounterSubject.asObservable();
+  increasedNumber$: Observable<KnittingCounter> = this.knittingCounterSubject.asObservable();
 
   constructor(private counterService:KnittingCounterService) {}
 
@@ -38,5 +39,9 @@ export class AppComponent implements OnInit {
     };
 
     this.counterService.addCounter$(addedCounter).subscribe();
+  }
+
+  countOne(counter: KnittingCounter): void {
+    this.counterService.addNumber$(counter.counterId).subscribe();
   }
 }
