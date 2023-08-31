@@ -13,3 +13,20 @@
 ul {
     list-style-type: none;
 }
+
+.btn-big-circle {
+    box-shadow: 0 8px #9c6f6f;
+    border: none;
+    background-color: #ed2424;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.btn-big-circle:hover {
+    background-color: #d43838;
+}
+.btn-big-circle:active {
+    background-color: #ae1a1a;
+    box-shadow: 0 4px #5e3d3d;
+    transform: translateY(4px);
+}
