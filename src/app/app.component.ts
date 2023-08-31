@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { KnittingCounterService } from './service/knittingCounter.service';
 import { KnittingCounter } from './interface/knittingCounter';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -28,4 +29,14 @@ export class AppComponent implements OnInit {
     this.currentCounter$ = this.counterService.counterById$(counter.counterId)
   }
 
+  addCounter(form: NgForm) {
+    const addedCounter: KnittingCounter = {
+      counterId: form.value.counterId,
+      counterName: form.value.counterName,
+      counterNumber: form.value.counterNumber,
+      counterTotal: form.value.counterTotal
+    };
+
+    this.counterService.addCounter$(addedCounter).subscribe();
+  }
 }

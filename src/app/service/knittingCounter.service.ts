@@ -24,4 +24,16 @@ export class KnittingCounterService {
         .pipe(
             tap(console.log)
     );
+
+    addCounter$ = (counter: KnittingCounter) => <Observable<KnittingCounter>> this.http.post<KnittingCounter>(`${this.apiUrl}/counter/save`, counter)
+        .pipe(
+            tap(console.log)
+    );
+
+
+    //how about first add a new counter?
+    // addNumber$ = (counterId: number) => <Observable<KnittingCounter>> this.http.post(`${this.apiUrl}/counter/add/${counterId}`, )
+    //     .pipe(
+    //         tap(console.log)
+    // );
 }

@@ -16,6 +16,9 @@
             <a (click)="getCounterById(counter)" type="button">{{ counter.counterName }}: {{ counter.counterNumber }} / {{ counter.counterTotal }}</a>
           </li>
         </ul>
+        <div>
+          <button href="#addCounterModal" class="btn btn-success" data-toggle="modal" data>Add</button>
+        </div>
       </div>
     
       <div class="grid-item">
@@ -39,4 +42,34 @@
     </div>
   </ng-container>
 
+</div>
+
+
+
+
+<!-- Modal -->
+<div id="addCounterModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form #form="ngForm" (ngSubmit)="addCounter(form)">
+        <div class="modal-body">
+          <div>
+            <label>name</label>
+            <input type="text" ngModel name="counterName">
+          </div>
+          <div>
+            <label>Number</label>
+            <input type="number" ngModel name="counterNumber">
+          </div>
+          <div>
+            <label>Total</label>
+            <input type="number" ngModel name="counterTotal">
+          </div>
+        </div>
+        <div>
+           <button type="submit">submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
