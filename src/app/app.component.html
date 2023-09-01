@@ -13,7 +13,9 @@
       <div class="grid-item" id="counterList">
         <ul *ngFor="let counter of listOfCounters">
           <li>
-            <a (click)="getCounterById(counter)" type="button">{{ counter.counterName }}: {{ counter.counterNumber }} / {{ counter.counterTotal }}</a>
+            <a (click)="getCounterById(counter)" type="button">
+              {{ counter.counterName }}: {{ counter.counterNumber }} / {{ counter.counterTotal }}
+            </a>
           </li>
         </ul>
         <div  id="add">
@@ -51,7 +53,6 @@
       </ng-container>
     </div>
   </ng-container>
-
 </div>
 
 
@@ -65,17 +66,17 @@
         <form role="form" #form="ngForm" (ngSubmit)="addCounter(form)">
           <div>
             <div class="form-group">
-              <label for="counterName">name</label>
+              <label for="counterName">Counter name:</label>
               <input type="text" ngModel name="counterName">
             </div>
             <div class="form-group">
-              <label for="counterTotal">Total</label>
+              <label for="counterTotal">Number:</label>
               <input type="number" ngModel name="counterTotal">
             </div>
           </div>
-          <button type="submit">submit</button>
+          <button class="btn btn-secondary" type="submit">submit</button>
+          <button class="btn btn-light" type="submit" data-dismiss="modal">cancel</button>
         </form>
-        <button type="submit" data-dismiss="modal">cancel</button>
       </div>
     </div>
   </div>

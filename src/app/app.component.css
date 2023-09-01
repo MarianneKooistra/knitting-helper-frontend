@@ -8,7 +8,7 @@
 }
 
 #counterList {
-    background-color: rgba(220, 220, 220, 0.600);
+    background-color: #dcdcdc99;
 }
 ul {
     list-style-type: none;
@@ -53,4 +53,18 @@ ul {
 .counterNumbers p {
     font-size: 4em;
     font-weight: bold;
+}
+
+.modal-content{
+    margin-top: 100px;
+    background-color: #ececec;
+}
+
+.form-group label {
+    margin: 0px 10px;
+    font-weight: bold;
+}
+
+.modal-body button {
+    margin: 10px;
 }
