@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { KnittingCounterService } from './service/knittingCounter.service';
 import { KnittingCounter } from './interface/knittingCounter';
-import { BehaviorSubject, Observable, count } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -22,8 +22,16 @@ export class AppComponent implements OnInit {
   constructor(private counterService:KnittingCounterService) {}
 
   ngOnInit(): void {
-    this.listOfCounters$ = this.counterService.counters$
+    //With the single line below commented, the modal and the submission form works as it should. 
+    //Except it shows an empty list when the page is loaded.
+    //The getList solves that. But then new counters no longer get added to the list (they are getting added to the database)
+    
+    // this.getList();
     this.currentCounter$ = this.counterService.counterById$(1);
+  }
+
+  getList(): void {
+    this.listOfCounters$ = this.counterService.counters$;
   }
 
   getCounterById(counter: KnittingCounter): void {
@@ -34,11 +42,16 @@ export class AppComponent implements OnInit {
     const addedCounter: KnittingCounter = {
       counterId: form.value.counterId,
       counterName: form.value.counterName,
-      counterNumber: form.value.counterNumber,
+      counterNumber: 0,
       counterTotal: form.value.counterTotal
     };
 
-    this.counterService.addCounter$(addedCounter).subscribe();
+    this.counterService.addCounter$(addedCounter).subscribe((newAddedCounter) => {
+      const counters = this.knittingCounterArraySubject.value;
+      counters.push(newAddedCounter);
+      this.knittingCounterArraySubject.next(counters);
+      form.resetForm();
+    });
   }
 
   countOne(counter: KnittingCounter): void {

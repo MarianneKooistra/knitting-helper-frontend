@@ -46,7 +46,6 @@
             <div class="counterNumbers">
               <p>{{ current.counterNumber }} <i>of</i> {{ current.counterTotal }}</p>
             </div>
-            
           </div>
         </div>
       </ng-container>
@@ -62,25 +61,22 @@
 <div id="addCounterModal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form #form="ngForm" (ngSubmit)="addCounter(form)">
-        <div class="modal-body">
+      <div class="modal-body">
+        <form role="form" #form="ngForm" (ngSubmit)="addCounter(form)">
           <div>
-            <label>name</label>
-            <input type="text" ngModel name="counterName">
+            <div class="form-group">
+              <label for="counterName">name</label>
+              <input type="text" ngModel name="counterName">
+            </div>
+            <div class="form-group">
+              <label for="counterTotal">Total</label>
+              <input type="number" ngModel name="counterTotal">
+            </div>
           </div>
-          <div>
-            <label>Number</label>
-            <input type="number" ngModel name="counterNumber">
-          </div>
-          <div>
-            <label>Total</label>
-            <input type="number" ngModel name="counterTotal">
-          </div>
-        </div>
-        <div>
-           <button type="submit">submit</button>
-        </div>
-      </form>
+          <button type="submit">submit</button>
+        </form>
+        <button type="submit" data-dismiss="modal">cancel</button>
+      </div>
     </div>
   </div>
 </div>

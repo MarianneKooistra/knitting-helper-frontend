@@ -17,6 +17,7 @@ export class KnittingCounterService {
 
     counters$ = <Observable<KnittingCounter[]>> this.http.get(`${this.apiUrl}/counter/`)
         .pipe(
+            
             tap(console.log)
     );
 
@@ -29,13 +30,7 @@ export class KnittingCounterService {
         .pipe(
             tap(console.log)
     );
-//this one r the other one
-    // increaseNumber$ = (counterId: number, counter: KnittingCounter) => <Observable<KnittingCounter>> this.http.post<KnittingCounter>(`${this.apiUrl}/counter/add/${counterId}`, counter)
-    //     .pipe(
-    //         tap(console.log)
-    // );
 
-    //how about first add a new counter?
     addNumber$ = (counterId: number): Observable<KnittingCounter> => this.http.post(`${this.apiUrl}/counter/add/${counterId}`, counterId)
         .pipe(
             tap(console.log)
