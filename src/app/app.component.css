@@ -1,6 +1,6 @@
 .grid-container {
     display: grid;
-    grid-template-columns: max-content max-content auto;
+    grid-template-columns: max-content 33% auto;
 }
 .grid-item {
     padding: 10px;
@@ -12,6 +12,22 @@
 }
 ul {
     list-style-type: none;
+}
+#add {
+    text-align: center;
+}
+
+.grid-item.mid {
+    text-align: center;
+}
+
+#rowStitch {
+    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.btn-group.btn-group-toggle {
+    border: solid 3px #e0e4e4;
 }
 
 .btn-big-circle {
@@ -29,4 +45,12 @@ ul {
     background-color: #ae1a1a;
     box-shadow: 0 4px #5e3d3d;
     transform: translateY(4px);
+}
+
+.counterTitle {
+    margin-bottom: 25px;
+}
+.counterNumbers p {
+    font-size: 4em;
+    font-weight: bold;
 }

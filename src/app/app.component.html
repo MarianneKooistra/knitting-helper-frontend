@@ -1,8 +1,8 @@
-<div>
+<div class="container-xl">
   <h1>Easily keep track of your knitting project</h1>
 </div>
 
-<div>
+<div class="container-xl">
   <header>
     <h2>Counter</h2>
     <p>Click the button every time you have finished a section of the project.</p>
@@ -16,26 +16,37 @@
             <a (click)="getCounterById(counter)" type="button">{{ counter.counterName }}: {{ counter.counterNumber }} / {{ counter.counterTotal }}</a>
           </li>
         </ul>
-        <div>
-          <button href="#addCounterModal" class="btn btn-success" data-toggle="modal" data>Add</button>
+        <div  id="add">
+          <button href="#addCounterModal" class="btn btn-secondary" data-toggle="modal" data>Add</button>
         </div>
       </div>
     
       <ng-container *ngIf="(currentCounter$ | async) as current">
-        <div class="grid-item">
-          <table>
+        <div class="grid-item mid">
+          <table id="rowStitch">
             <tr>
-              <td>Row</td>
-              <td>Stitch</td>
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light active">
+                  <input type="radio" name="options" id="option1" autocomplete="off" checked> Row
+                </label>
+                <label class="btn btn-light">
+                  <input type="radio" name="options" id="option2" autocomplete="off"> Stitch
+                </label>
+              </div>
             </tr>
           </table>
-          <a (click)="countOne(current)" type="button" class="btn-big-circle"></a>
+          <div>
+            <a (click)="countOne(current)" type="button" class="btn-big-circle"></a>
+          </div>
         </div>
 
         <div class="grid-item">
           <div>
-            <h3>{{ current.counterName }}</h3>
-            <p>{{ current.counterNumber }} of {{ current.counterTotal }}</p>
+            <h3 class="counterTitle">{{ current.counterName }}</h3>
+            <div class="counterNumbers">
+              <p>{{ current.counterNumber }} <i>of</i> {{ current.counterTotal }}</p>
+            </div>
+            
           </div>
         </div>
       </ng-container>
