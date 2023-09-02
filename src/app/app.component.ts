@@ -55,6 +55,8 @@ export class AppComponent implements OnInit {
   }
 
   countOne(counter: KnittingCounter): void {
-    this.counterService.addNumber$(counter.counterId).subscribe();
+    this.counterService.addNumber$(counter.counterId).subscribe(updateCounter => {
+      this.currentCounter$ = this.counterService.counterById$(counter.counterId);
+    });
   }
 }
