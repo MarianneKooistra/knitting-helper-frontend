@@ -23,25 +23,27 @@
         </div>
       </div>
     
-      <ng-container *ngIf="(currentCounter$ | async) as current">
-        <div class="grid-item mid">
-          <table id="rowStitch">
-            <tr>
-              <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-light active">
-                  <input type="radio" name="options" id="option1" autocomplete="off" checked> Row
-                </label>
-                <label class="btn btn-light">
-                  <input type="radio" name="options" id="option2" autocomplete="off"> Stitch
-                </label>
-              </div>
-            </tr>
-          </table>
+      <div class="grid-item mid">
+        <table id="rowStitch">
+          <tr>
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-light active">
+                <input type="radio" name="options" id="option1" autocomplete="off" checked> Row
+              </label>
+              <label class="btn btn-light">
+                <input type="radio" name="options" id="option2" autocomplete="off"> Stitch
+              </label>
+            </div>
+          </tr>
+        </table>
+        <ng-container *ngIf="(currentCounter$ | async) as current">
           <div>
             <a (click)="countOne(current)" type="button" class="btn-big-circle"></a>
           </div>
-        </div>
+        </ng-container>
+      </div>
 
+      <ng-container *ngIf="(currentCounter$ | async) as current">
         <div class="grid-item">
           <div>
             <h3 class="counterTitle">{{ current.counterName }}</h3>
@@ -74,8 +76,8 @@
               <input type="number" ngModel name="counterTotal">
             </div>
           </div>
-          <button class="btn btn-secondary" type="submit">submit</button>
-          <button class="btn btn-light" type="submit" data-dismiss="modal">cancel</button>
+          <button class="btn btn-secondary" type="submit" aria->submit</button>
+          <button class="btn btn-light" type="button" id="closeModal" data-dismiss="modal">cancel</button>
         </form>
       </div>
     </div>

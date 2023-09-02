@@ -50,6 +50,7 @@ export class AppComponent implements OnInit {
       const counters = this.knittingCounterArraySubject.value;
       counters.push(newAddedCounter);
       this.knittingCounterArraySubject.next(counters);
+      document.getElementById('closeModal')?.click();
       form.resetForm();
     });
   }
