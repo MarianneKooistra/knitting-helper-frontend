@@ -36,4 +36,8 @@ export class KnittingCounterService {
             tap(console.log)
     );
 
+    minusNumber$ = (counterId: number): Observable<KnittingCounter> => this.http.post(`${this.apiUrl}/counter/subtract/${counterId}`, counterId)
+        .pipe(
+            tap(console.log)
+    );
 }

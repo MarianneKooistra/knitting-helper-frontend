@@ -39,6 +39,7 @@
         <ng-container *ngIf="(currentCounter$ | async) as current">
           <div>
             <a (click)="countOne(current)" type="button" class="btn-big-circle"></a>
+            <img src="https://cdn.pixabay.com/photo/2021/02/18/05/02/frog-6026117_1280.png" alt="Frogging" class="frog" (click)="minusOne(current)">
           </div>
         </ng-container>
       </div>

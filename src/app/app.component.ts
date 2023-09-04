@@ -60,4 +60,10 @@ export class AppComponent implements OnInit {
       this.currentCounter$ = this.counterService.counterById$(counter.counterId);
     });
   }
+
+  minusOne(counter: KnittingCounter): void {
+    this.counterService.minusNumber$(counter.counterId).subscribe(updateCounter => {
+      this.currentCounter$ = this.counterService.counterById$(counter.counterId);
+    });
+  }
 }

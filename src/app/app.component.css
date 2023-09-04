@@ -47,6 +47,23 @@ ul {
     transform: translateY(4px);
 }
 
+.frog {
+    box-shadow: 0 4px green;
+    background-color: yellowgreen;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.frog:hover {
+    cursor: pointer;
+    box-shadow: 0 4px rgb(0, 90, 128);
+
+}
+.frog:active {
+    box-shadow: 0 2px rgb(0, 62, 88);
+    transform: translateY(2px);
+}
+
 .counterTitle {
     margin-bottom: 25px;
 }
