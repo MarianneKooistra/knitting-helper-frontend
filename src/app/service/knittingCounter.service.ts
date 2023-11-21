@@ -11,32 +11,32 @@ import { KnittingCounter } from "../interface/knittingCounter";
 })
 
 export class KnittingCounterService {
-    private readonly apiUrl = 'http://localhost:8080';
+    private readonly apiUrl = 'http://localhost:8080/api/counter';
 
     constructor(private http: HttpClient) {}
 
-    counters$ = <Observable<KnittingCounter[]>> this.http.get(`${this.apiUrl}/counter/`)
+    counters$ = <Observable<KnittingCounter[]>> this.http.get(`${this.apiUrl}/`)
         .pipe(
             
             tap(console.log)
     );
 
-    counterById$ = (counterId: number) => <Observable<KnittingCounter>> this.http.get(`${this.apiUrl}/counter/get/${counterId}`)
+    counterById$ = (counterId: number) => <Observable<KnittingCounter>> this.http.get(`${this.apiUrl}/get/${counterId}`)
         .pipe(
             tap(console.log)
     );
 
-    addCounter$ = (counter: KnittingCounter) => <Observable<KnittingCounter>> this.http.post<KnittingCounter>(`${this.apiUrl}/counter/save`, counter)
+    addCounter$ = (counter: KnittingCounter) => <Observable<KnittingCounter>> this.http.post<KnittingCounter>(`${this.apiUrl}/save`, counter)
         .pipe(
             tap(console.log)
     );
 
-    addNumber$ = (counterId: number): Observable<KnittingCounter> => this.http.post(`${this.apiUrl}/counter/add/${counterId}`, counterId)
+    addNumber$ = (counterId: number): Observable<KnittingCounter> => this.http.post(`${this.apiUrl}/add/${counterId}`, counterId)
         .pipe(
             tap(console.log)
     );
 
-    minusNumber$ = (counterId: number): Observable<KnittingCounter> => this.http.post(`${this.apiUrl}/counter/subtract/${counterId}`, counterId)
+    minusNumber$ = (counterId: number): Observable<KnittingCounter> => this.http.post(`${this.apiUrl}/subtract/${counterId}`, counterId)
         .pipe(
             tap(console.log)
     );
