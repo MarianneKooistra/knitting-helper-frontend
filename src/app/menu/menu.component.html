@@ -1,0 +1,43 @@
+<div class="grid-container">
+  <div id="counterList" class="py-3 pr-3">
+    <ul *ngFor="let counter of counters">
+      <li *ngIf="counter == selectedCounter">
+        <a>
+          {{ selectedCounter.counterName }}: {{ selectedCounter.counterNumber }} / {{ selectedCounter.counterTotal }}
+        </a>
+      </li>
+      <li>
+        <a (click)="getCounter(counter)" type="button">
+          {{ counter.counterName }}: {{ counter.counterNumber }} / {{ counter.counterTotal }}
+        </a>
+      </li>
+    </ul>
+    <div id="add">
+      <button href="#addCounterModal" class="btn btn-secondary" data-toggle="modal" data>Add</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="addCounterModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form role="form" #addForm="ngForm" >
+          <div>
+            <div class="form-group">
+              <label for="counterName">Counter name:</label>
+              <input type="text" ngModel name="counterName" ngbAutoFocus>
+            </div>
+            <div class="form-group">
+              <label for="counterTotal">Number:</label>
+              <input type="number" ngModel name="counterTotal">
+            </div>
+          </div>
+          <button class="btn btn-secondary" type="submit" (click)="submitForm(addForm)">submit</button>
+          <button class="btn btn-light" type="button" id="closeModal" data-dismiss="modal">cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

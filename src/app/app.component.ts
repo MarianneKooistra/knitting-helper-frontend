@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { KnittingCounterService } from './service/knittingCounter.service';
-import { KnittingCounter } from './interface/knittingCounter';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { NgForm } from '@angular/forms';
+import { KnittingCounter } from 'src/model/KnittingCounter';
+import { MenuComponent } from './menu/menu.component';
 
 @Component({
   selector: 'app-root',
@@ -11,59 +10,34 @@ import { NgForm } from '@angular/forms';
 })
 export class AppComponent implements OnInit {
   title = 'SummerVacationProjectFrontend';
-  private newCounter = new KnittingCounter();
+  currentCounter: KnittingCounter = { counterId: 999, counterName: 'placeholder', counterNumber: 0, counterTotal: 1};
 
-  private knittingCounterArraySubject = new BehaviorSubject<any[]>([]);
-  listOfCounters$: Observable<any[]> = this.knittingCounterArraySubject.asObservable();
-  private knittingCounterSubject = new BehaviorSubject<KnittingCounter> (this.newCounter);
-  currentCounter$: Observable<KnittingCounter> = this.knittingCounterSubject.asObservable();
-  increasedNumber$: Observable<KnittingCounter> = this.knittingCounterSubject.asObservable();
-
-  constructor(private counterService:KnittingCounterService) {}
+  constructor(private counterService: KnittingCounterService) {}
 
   ngOnInit(): void {
-    //With the single line below commented, the modal and the submission form works as it should. 
-    //Except it shows an empty list when the page is loaded.
-    //The getList solves that. But then new counters no longer get added to the list (they are getting added to the database)
-    
-    // this.getList();
-    this.currentCounter$ = this.counterService.counterById$(1);
-  }
-
-  getList(): void {
-    this.listOfCounters$ = this.counterService.counters$;
-  }
-
-  getCounterById(counter: KnittingCounter): void {
-    this.currentCounter$ = this.counterService.counterById$(counter.counterId)
-  }
-
-  addCounter(form: NgForm) {
-    const addedCounter: KnittingCounter = {
-      counterId: form.value.counterId,
-      counterName: form.value.counterName,
-      counterNumber: 0,
-      counterTotal: form.value.counterTotal
-    };
-
-    this.counterService.addCounter$(addedCounter).subscribe((newAddedCounter) => {
-      const counters = this.knittingCounterArraySubject.value;
-      counters.push(newAddedCounter);
-      this.knittingCounterArraySubject.next(counters);
-      document.getElementById('closeModal')?.click();
-      form.resetForm();
+    this.counterService.currentCounter$.subscribe((counter) => {
+      this.currentCounter = counter;
     });
   }
 
-  countOne(counter: KnittingCounter): void {
-    this.counterService.addNumber$(counter.counterId).subscribe(updateCounter => {
-      this.currentCounter$ = this.counterService.counterById$(counter.counterId);
+  countOne() {
+    this.counterService.addNumber(this.currentCounter.counterId).subscribe({
+      next: (response) => {
+        this.counterService.currentCounter$.next(
+          response.data.counter
+        );
+      }
     });
   }
 
-  minusOne(counter: KnittingCounter): void {
-    this.counterService.minusNumber$(counter.counterId).subscribe(updateCounter => {
-      this.currentCounter$ = this.counterService.counterById$(counter.counterId);
+  minusOne() {
+    this.counterService.minusNumber(this.currentCounter.counterId).subscribe({
+      next: (response) => {
+        this.counterService.currentCounter$.next(
+          response.data.counter
+        );
+      }
     });
   }
+
 }

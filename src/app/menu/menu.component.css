@@ -1,0 +1,28 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: max-content 33% auto;
+}
+
+#counterList {
+    background-color: #dcdcdc99;
+}
+ul {
+    list-style-type: none;
+}
+#add {
+    text-align: center;
+}
+
+.modal-content{
+    margin-top: 100px;
+    background-color: #ececec;
+}
+
+.modal-body button {
+    margin: 10px;
+}
+
+.form-group label {
+    margin: 0px 10px;
+    font-weight: bold;
+}

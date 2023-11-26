@@ -8,21 +8,8 @@
     <p>Click the button every time you have finished a section of the project.</p>
   </header>
 
-  <ng-container *ngIf="(listOfCounters$ | async) as listOfCounters">
     <div class="grid-container">
-      <div class="grid-item" id="counterList">
-        <ul *ngFor="let counter of listOfCounters">
-          <li>
-            <a (click)="getCounterById(counter)" type="button">
-              {{ counter.counterName }}: {{ counter.counterNumber }} / {{ counter.counterTotal }}
-            </a>
-          </li>
-        </ul>
-        <div  id="add">
-          <button href="#addCounterModal" class="btn btn-secondary" data-toggle="modal" data>Add</button>
-        </div>
-      </div>
-    
+      <app-menu></app-menu>
       <div class="grid-item mid">
         <table id="rowStitch">
           <tr>
@@ -36,52 +23,23 @@
             </div>
           </tr>
         </table>
-        <ng-container *ngIf="(currentCounter$ | async) as current">
-          <div>
-            <a (click)="countOne(current)" type="button" class="btn-big-circle"></a>
-            <img src="https://cdn.pixabay.com/photo/2021/02/18/05/02/frog-6026117_1280.png" alt="Frogging" class="frog" (click)="minusOne(current)">  
-            <!-- Source: Image by Alexandra Garcia via Pixabay -->
-          </div>
-        </ng-container>
+        <div>
+          <!-- big red button -->
+          <a (click)="countOne()" type="button" class="btn-big-circle"></a>
+
+          <!-- small frogging button -->
+          <img src="https://cdn.pixabay.com/photo/2021/02/18/05/02/frog-6026117_1280.png" alt="Frogging" class="frog" (click)="minusOne()">  
+          <!-- Source: Image by Alexandra Garcia via Pixabay -->
+        </div>
       </div>
 
-      <ng-container *ngIf="(currentCounter$ | async) as current">
-        <div class="grid-item">
-          <div>
-            <h3 class="counterTitle">{{ current.counterName }}</h3>
-            <div class="counterNumbers">
-              <p>{{ current.counterNumber }} <i>of</i> {{ current.counterTotal }}</p>
-            </div>
+      <div class="grid-item">
+        <div>
+          <h3 class="counterTitle">{{ currentCounter.counterName }}</h3>
+          <div class="counterNumbers">
+            <p>{{ currentCounter.counterNumber }} <i> of </i> {{ currentCounter.counterTotal }}</p>
           </div>
         </div>
-      </ng-container>
-    </div>
-  </ng-container>
-</div>
-
-
-
-
-<!-- Modal -->
-<div id="addCounterModal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
-        <form role="form" #form="ngForm" (ngSubmit)="addCounter(form)">
-          <div>
-            <div class="form-group">
-              <label for="counterName">Counter name:</label>
-              <input type="text" ngModel name="counterName">
-            </div>
-            <div class="form-group">
-              <label for="counterTotal">Number:</label>
-              <input type="number" ngModel name="counterTotal">
-            </div>
-          </div>
-          <button class="btn btn-secondary" type="submit" aria->submit</button>
-          <button class="btn btn-light" type="button" id="closeModal" data-dismiss="modal">cancel</button>
-        </form>
       </div>
     </div>
-  </div>
 </div>
